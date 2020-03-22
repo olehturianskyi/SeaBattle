@@ -23,13 +23,10 @@ namespace ConsoleApp3
             }
             Console.SetCursorPosition(38, 25);
             Console.Write(StringDw);
-
         }
-
         //Метод прорисовки поля компа
         static void StartDrawFieldComp()
-        {
-           
+        {           
             // заголовки стовбців
             for (int j = 0; j < 12; j++)
             {
@@ -126,7 +123,7 @@ namespace ConsoleApp3
             Console.WriteLine("______________Ваш флот___________");
             Console.WriteLine("_________________________________");
             StartDrawFieldMan(ref flag, x1, y1, x2, y2);
-            //**************************************************************************************
+            //*****************************************************************************
             DialogsField();
             Console.SetCursorPosition(40, 19);
             Console.Write("Ставимо 4-х клiтинний кораблик");
@@ -135,83 +132,19 @@ namespace ConsoleApp3
             string  coord = Console.ReadLine();
             char ch1begin = coord[0];
             char ch2begin = coord[1];
-            
-            switch (ch1begin)
-            {
-                case 'a':
-                    x1 = 1;
-                    break;
-                case 'b':
-                    x1 = 2;
-                    break;
-                case 'c':
-                    x1 = 3;
-                    break;
-                case 'd':
-                    x1 = 4;
-                    break;
-                case 'e':
-                    x1 = 5;
-                    break;
-                case 'f':
-                    x1 = 6;
-                    break;
-                case 'g':
-                    x1 = 7;
-                    break;
-                case 'h':
-                    x1 = 8;
-                    break;
-                case 'i':
-                    x1 = 9;
-                    break;
-                case 'j':
-                    x1 = 10;
-                    break;
-            }
-            y1 = Convert.ToInt32(ch2begin)-48;
-  //*****************************************************************************
+         
+            x1 = Convert.ToInt32(ch1begin) - 96;
+            y1 = Convert.ToInt32(ch2begin) - 48;
+            //*****************************************************************************
             Console.SetCursorPosition(40, 22);
             Console.Write("Вкажiть координати останньої клiтинки:");
             coord = Console.ReadLine();
             Console.SetCursorPosition(40, 23);
             char ch1end = coord[0];
             char ch2end = coord[1];
-
-              switch (ch1end)
-              {
-                  case 'a':
-                      x2 = 1;
-                      break;
-                  case 'b':
-                      x2 = 2;
-                      break;
-                  case 'c':
-                      x2 = 3;
-                      break;
-                  case 'd':
-                      x2 = 4;
-                      break;
-                  case 'e':
-                      x2 = 5;
-                      break;
-                  case 'f':
-                      x2 = 6;
-                      break;
-                  case 'g':
-                      x2 = 7;
-                      break;
-                  case 'h':
-                      x2 = 8;
-                      break;
-                  case 'i':
-                      x2 = 9;
-                      break;
-                  case 'j':
-                      x2 = 10;
-                      break;
-              }
-              y2 = Convert.ToInt32(ch2end)-48; 
+           
+            x2 = Convert.ToInt32(ch1end) - 96;
+            y2 = Convert.ToInt32(ch2end) - 48; 
 
             
             flag = true;

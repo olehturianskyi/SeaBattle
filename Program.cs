@@ -9,6 +9,23 @@ namespace ConsoleApp3
         private static string[] horis = new string[] { "   ", " a ", " b ", " c ", " d ", " e ", " f ", " g ", " h ", " i ", " j ", "   " };
         private static string[] vert = new string[] { "   ", " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 ", " 0 ", "   " };
 
+        static void DialogsField()
+        {
+            string StringUp = "╔════════════════════════════════════════════════════════════╗";
+            string StringMd = "║                                                            ║";
+            string StringDw = "╚════════════════════════════════════════════════════════════╝";
+            Console.SetCursorPosition(38, 18);
+            Console.Write(StringUp);
+            for (int i = 19; i<25; i++)
+            {
+                Console.SetCursorPosition(38, i);
+                Console.Write(StringMd);
+            }
+            Console.SetCursorPosition(38, 25);
+            Console.Write(StringDw);
+
+        }
+
         //Метод прорисовки поля компа
         static void StartDrawFieldComp()
         {
@@ -93,7 +110,8 @@ namespace ConsoleApp3
             }
         }
         static void Main(string[] args)
-        {            
+        {
+            Console.WindowWidth = 105;
             bool flag = false;
             int x1 = 0;
             int x2 = 0;
@@ -108,10 +126,11 @@ namespace ConsoleApp3
             Console.WriteLine("______________Ваш флот___________");
             Console.WriteLine("_________________________________");
             StartDrawFieldMan(ref flag, x1, y1, x2, y2);
-//**************************************************************************************
-            Console.SetCursorPosition(40, 1);
+            //**************************************************************************************
+            DialogsField();
+            Console.SetCursorPosition(40, 19);
             Console.Write("Ставимо 4-х клiтинний кораблик");
-            Console.SetCursorPosition(40, 2);
+            Console.SetCursorPosition(40, 20);
             Console.Write("Вкажiть координати першої клiтинки (наприклад, g4):");
             string  coord = Console.ReadLine();
             char ch1begin = coord[0];
@@ -152,10 +171,10 @@ namespace ConsoleApp3
             }
             y1 = Convert.ToInt32(ch2begin)-48;
   //*****************************************************************************
-            Console.SetCursorPosition(40, 4);
+            Console.SetCursorPosition(40, 22);
             Console.Write("Вкажiть координати останньої клiтинки:");
             coord = Console.ReadLine();
-            Console.SetCursorPosition(40, 5);
+            Console.SetCursorPosition(40, 23);
             char ch1end = coord[0];
             char ch2end = coord[1];
 

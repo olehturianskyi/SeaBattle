@@ -81,8 +81,6 @@ namespace ConsoleApp3
                         seeman[y, x1] = "[■]";
                     }
                 }
-                //seeman[y1,x1] = "[■]";
-                //seeman[y2,x2] = "[■]";
             }
             //Прорисовка полів
             for (int i = 0; i < 11; i++)

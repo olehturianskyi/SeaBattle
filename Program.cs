@@ -9,6 +9,18 @@ namespace ConsoleApp3
         private static string[] horis = new string[] { "   ", " a ", " b ", " c ", " d ", " e ", " f ", " g ", " h ", " i ", " j ", "   " };
         private static string[] vert = new string[] { "   ", " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 ", " 0 ", "   " };
 
+        static void DialogsFieldError()
+        {            
+            Console.SetCursorPosition(38, 15);  Console.Write("╔════════════════════════════════════════════════════════════╗");
+            Console.SetCursorPosition(38, 16);  Console.Write("║      Помилка! Будьте уважнішими! Не допустимі данні!       ║");            
+            Console.SetCursorPosition(38, 17);  Console.Write("╚════════════════════════════════════════════════════════════╝");
+        }
+        static void DialogsFieldErrorClear()
+        {
+            Console.SetCursorPosition(38, 15);  Console.Write("                                                              ");
+            Console.SetCursorPosition(38, 16);  Console.Write("                                                              ");
+            Console.SetCursorPosition(38, 17);  Console.Write("                                                              ");
+        }
         static void DialogsField()
         {
             string StringUp = "╔════════════════════════════════════════════════════════════╗";
@@ -37,7 +49,7 @@ namespace ConsoleApp3
             {
               seacomp[i, 0] = vert[i];
             }
-            // Формування полів
+            // Формування полів ***************************************************
             //код 249 ∙         код 254 ■       ♦
             for (int i = 1; i < 12; i++)
             {
@@ -50,8 +62,7 @@ namespace ConsoleApp3
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
-                {
-                    //Console.SetCursorPosition(i, j);
+                {                    
                     Console.Write(seacomp[i, j]);
                 }
                 Console.WriteLine();
@@ -70,8 +81,7 @@ namespace ConsoleApp3
             {
                 seaman[i, 0] = vert[i];
             }
-            // Формування полів
-            //код 249 ∙         код 254 ■       ♦
+            // Формування полів ***************************************************            
             for (int i = 1; i < 12; i++)
             {
                 for (int j = 1; j < 12; j++)
@@ -123,33 +133,38 @@ namespace ConsoleApp3
             Console.WriteLine("______________Ваш флот___________");
             Console.WriteLine("_________________________________");
             StartDrawFieldMan(ref flag, x1, y1, x2, y2);
-            //*****************************************************************************
-            DialogsField();
-            Console.SetCursorPosition(40, 19);
-            Console.Write("Ставимо 4-х клiтинний кораблик");
-            Console.SetCursorPosition(40, 20);
-            Console.Write("Вкажiть координати першої клiтинки (наприклад, g4):");
-            string  coord = Console.ReadLine();
-            char ch1begin = coord[0];
-            char ch2begin = coord[1];
-         
-            x1 = Convert.ToInt32(ch1begin) - 96;
-            y1 = Convert.ToInt32(ch2begin) - 48;
-            //*****************************************************************************
-            Console.SetCursorPosition(40, 22);
-            Console.Write("Вкажiть координати останньої клiтинки:");
-            coord = Console.ReadLine();
-            Console.SetCursorPosition(40, 23);
-            char ch1end = coord[0];
-            char ch2end = coord[1];
-           
-            x2 = Convert.ToInt32(ch1end) - 96;
-            y2 = Convert.ToInt32(ch2end) - 48; 
 
-            
+            /******************************************************************************
+            *************  Р О З С Т А Н О В К А     К О Р А Б Л И К І В  *****************
+            ******************************************************************************/
+            do
+            {
+                DialogsField();
+                Console.SetCursorPosition(40, 19);
+                Console.Write("Ставимо 4-х клiтинний кораблик");
+                Console.SetCursorPosition(40, 20);
+                Console.Write("Вкажiть координати першої клiтинки (наприклад, g4):");
+                string coord = Console.ReadLine();
+                DialogsFieldErrorClear();
+                char ch1begin = coord[0];
+                char ch2begin = coord[1];
+                x1 = Convert.ToInt32(ch1begin) - 96;
+                y1 = Convert.ToInt32(ch2begin) - 48;
+                //*****************************************************************************
+                Console.SetCursorPosition(40, 22);
+                Console.Write("Вкажiть координати останньої клiтинки:");
+                coord = Console.ReadLine();
+                Console.SetCursorPosition(40, 23);
+                char ch1end = coord[0];
+                char ch2end = coord[1];
+                x2 = Convert.ToInt32(ch1end) - 96;
+                y2 = Convert.ToInt32(ch2end) - 48;
+                if ((x1 != x2) & (y1 != y2)) DialogsFieldError();
+            } while ((x1 != x2) & (y1 != y2));
+
             flag = true;
             Console.Clear();
-
+            // *************** Кораблики розставили. Перерисовуємо поля ******************
             Console.WriteLine("__________Флот комп'ютера________");
             Console.WriteLine("_________________________________");
             StartDrawFieldComp();

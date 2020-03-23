@@ -10,7 +10,8 @@ namespace ConsoleApp3
         private static string[] vert = new string[] { "   ", " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 ", " 0 ", "   " };
 
         static void DialogsFieldError()
-        {            
+        {
+            Console.Beep();
             Console.SetCursorPosition(38, 15);  Console.Write("╔════════════════════════════════════════════════════════════╗");
             Console.SetCursorPosition(38, 16);  Console.Write("║      Помилка! Будьте уважнішими! Не допустимі данні!       ║");            
             Console.SetCursorPosition(38, 17);  Console.Write("╚════════════════════════════════════════════════════════════╝");

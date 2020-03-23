@@ -8,12 +8,13 @@ namespace ConsoleApp3
         private static string[,] seaman = new string[12, 12];
         private static string[] horis = new string[] { "   ", " a ", " b ", " c ", " d ", " e ", " f ", " g ", " h ", " i ", " j ", "   " };
         private static string[] vert = new string[] { "   ", " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 ", " 0 ", "   " };
+        private static bool error = false;
 
         static void DialogsFieldError()
         {
             Console.Beep();
             Console.SetCursorPosition(38, 15);  Console.Write("╔════════════════════════════════════════════════════════════╗");
-            Console.SetCursorPosition(38, 16);  Console.Write("║      Помилка! Будьте уважнішими! Не допустимі данні!       ║");            
+            Console.SetCursorPosition(38, 16);  Console.Write("║      Помилка! Будьте уважнiшими! Не допустимi даннi!       ║");            
             Console.SetCursorPosition(38, 17);  Console.Write("╚════════════════════════════════════════════════════════════╝");
         }
         static void DialogsFieldErrorClear()
@@ -148,34 +149,53 @@ namespace ConsoleApp3
             Console.WriteLine("______________Ваш флот___________");
             Console.WriteLine("_________________________________");
             StartDrawFieldMan(ref flag, x1, y1, x2, y2);
-
+            bool error = false;
             /******************************************************************************
             *************  Р О З С Т А Н О В К А     К О Р А Б Л И К І В  *****************
             ******************************************************************************/
             do
             {
+                flag = false;
+                error = false;
                 DialogsField();
                 Console.SetCursorPosition(40, 19);
                 Console.Write("Ставимо 4-х клiтинний кораблик");
                 Console.SetCursorPosition(40, 20);
                 Console.Write("Вкажiть координати першої клiтинки (наприклад, g4):");
-                string coord = Console.ReadLine();
+                string coordbegin = Console.ReadLine();
                 DialogsFieldErrorClear();
-                char ch1begin = coord[0];
-                char ch2begin = coord[1];
+                char ch1begin = coordbegin[0];
+                char ch2begin = coordbegin[1];
                 x1 = Convert.ToInt32(ch1begin) - 96;
                 y1 = Convert.ToInt32(ch2begin) - 48;
                 //*****************************************************************************
                 Console.SetCursorPosition(40, 22);
                 Console.Write("Вкажiть координати останньої клiтинки:");
-                coord = Console.ReadLine();
+                string coordend = Console.ReadLine();
                 Console.SetCursorPosition(40, 23);
-                char ch1end = coord[0];
-                char ch2end = coord[1];
+                char ch1end = coordend[0];
+                char ch2end = coordend[1];
                 x2 = Convert.ToInt32(ch1end) - 96;
                 y2 = Convert.ToInt32(ch2end) - 48;
-                if ((x1 != x2) & (y1 != y2)) DialogsFieldError();
-            } while ((x1 != x2) & (y1 != y2));
+
+                if ((x1 != x2) && (y1 != y2)) 
+                {
+                    DialogsFieldError();
+                    error = true;
+                } 
+
+                if ((y1 == y2) && (Math.Abs(x1 - x2) !=3))
+                {
+                    DialogsFieldError();
+                    error = true;
+                }
+                if ((x1 == x2) && (Math.Abs(y1 - y2) != 3))
+                {
+                    DialogsFieldError();
+                    error = true;
+                }
+
+            } while (error == true);
 
             flag = true;
             Console.Clear();
